@@ -1,41 +1,58 @@
 <template>
-  <footer class="footer" v-bind:class="{ 'logo-only': userLoggedOut }">
-    <RouterLink v-bind:to="{ name: 'Home' }"></RouterLink>
-    <nav class="flex items-center justify-between flex-wrap bg-green-400 p-6">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-      <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
-      <span class="font-semibold text-xl tracking-tight">L'art en Lien</span>
+  <footer class="px-3 py-8 bg-blue-900 text-2 text-white dark:text-white transition-colors duration-200">
+    <div class="flex flex-col">
+        <div class="md:hidden mt-7 mx-auto w-11 h-px rounded-full">
+        </div>
+        <div class="mt-4 md:mt-0 flex flex-col md:flex-row">
+            <nav class="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-100 md:pr-5">
+                <a aria-current="page" href="#" class="hover:text-gray-700 dark:hover:text-white">
+                    Politique de confidentialité
+                </a>
+                <a aria-current="page" href="#" class="hover:text-gray-700 dark:hover:text-white">
+                    Mentions légales
+                </a>
+            </nav>
+            <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full">
+            </div>
+            <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-100">
+                <a class="hover:text-primary-gray-20" href="https://www.facebook.com/sylvain.boutet.12">
+                    <span class="sr-only">
+                        View on Facebook
+                    </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-xl hover:text-gray-800 dark:hover:text-white transition-colors duration-200" viewBox="0 0 1792 1792">
+                        <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
+                    </path>
+                    </svg>
+                </a>
+                <a class="ml-4 hover:text-primary-gray-20" href="tel:+33663545946">
+                    <span class="call-outline"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                </a>
+                <a class="ml-4 hover:text-primary-gray-20" href="mailto:sylvain-boutet@orange.fr">
+                    <span class="mail-outline"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full ">
+            </div>
+            <div class="mt-7 md:mt-0 flex-1 flex flex-col items-center justify-center md:items-start md:pl-5">
+                <span class="">
+                    © 2021
+                </span>
+                <span class="mt-7 md:mt-1">
+                    Created by
+                    <a class="underline hover:text-primary-gray-20" href="https://www.m2web.online">
+                        M2Web
+                    </a>
+                </span>
+            </div>
+        </div>
     </div>
-    <div class="block lg:hidden">
-      <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-      </button>
-    </div>
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div class="text-sm lg:flex-grow">
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"><RouterLink v-bind:to="{ name: 'Home' }">Home</RouterLink></a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4"><RouterLink v-bind:to="{ name: 'actu-home' }">Actualités</RouterLink></a>
-        <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"><RouterLink v-bind:to="{ name: 'actu-home' }">Actualités</RouterLink></a>
-      </div>
-      <div>
-        <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><RouterLink v-if="userLoggedOut" v-bind:to="{ name: 'Register' }">Inscription</RouterLink></a>
-        <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"><RouterLink v-if="userLoggedOut" v-bind:to="{ name: 'Login' }">Connexion</RouterLink></a>
-      </div>
-    </div>
-  </nav>
-    <div class="user" v-if="userLoggedIn">
-      <span class="username">{{ userDisplayName }}</span>
-      <img
-        class="avatar"
-        src="../assets/avatar.png"
-        v-on:click="toggleUserMenu()"
-      />
-      <div class="user-actions" v-show="userMenuVisible">
-        <RouterLink v-bind:to="{ name: 'InviteFriend' }">Inviter un ami</RouterLink>
-        <a v-on:click="disconnect()">Déconnexion</a>
-      </div>
-    </div>
-  </footer>
+</footer>
 </template>
 
 <script>
