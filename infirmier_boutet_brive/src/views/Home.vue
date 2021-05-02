@@ -48,8 +48,9 @@
           </div>
         </div>
         <div class="lg:ml-10 self-center p-12 shadow-2xl sm:w-auto  px-4 ">
-          GET
-https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations/{locationId}/reviews
+          <h1 class=" text-3xl mt-0 text-blue-900 text-center ">Avis Google</h1>
+          <div class="taggbox-container" style="width:100%;height:100%;overflow: auto;"><div class="taggbox-socialwall" data-wall-id="57521" view-url="https://widget.taggbox.com/57521"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +60,7 @@ https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations/{locationId}
     <h1 class=" font-serif shadow-2xl pt-10 pb-10 text-center text-5xl text-blue-900 ">Soins à domicile et au cabinet</h1>
     <div class="lg:grid lg:grid-cols-2 lg:gap-1 m-4 place-content-around text-justify lg:m-20 block">
       <div class="lg:pr-10 pt-10 ">
-        <img class="p-2" src="<?= get_theme_file_uri('src/1226647.jpg'); ?>" alt="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!4v1619980246132!6m8!1m7!1skj0djKJTSmdyYm38D1fwaQ!2m2!1d45.15259060880638!2d1.539986289715198!3f276.82363417124736!4f-6.330797772511815!5f1.9587109090973311" width="700" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
 
       </div>
@@ -87,7 +88,7 @@ https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations/{locationId}
         </ul>
       </div>
       <div class="lg:pl-10 pt-10 ">
-        <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1UZ1NAFRGnb6U5v_vbv6dH2RCoWmmzXrA" class="w-full h-96"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2813.7040764864437!2d1.539986289715198!3d45.15259060880638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f8970dc5844bcb%3A0xc94f76991de935e6!2sSylvain%20Boutet!5e0!3m2!1sfr!2sfr!4v1619980499730!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -101,6 +102,11 @@ https://mybusiness.googleapis.com/v4/accounts/{accountId}/locations/{locationId}
 export default {
   name: "Home",
   components: {
-  }
+  },
+  mounted() {
+    let externalScript = document.createElement('script')
+    externalScript.setAttribute('src', 'https://widget.taggbox.com/embed.min.js')
+    document.head.appendChild(externalScript)
+  },
 };
 </script>
