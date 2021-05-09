@@ -2,9 +2,9 @@
   <article class="article">
     <RouterLink
       v-bind:to="{
-        name: 'single-actu',
+        name: 'single-soin',
         params: {
-          actuId: actuId
+          soinId: soinId
         }
       }"
     >
@@ -27,9 +27,9 @@
 import ApiClient from "@/services/ApiClient.js";
 
 export default {
-  name: "ActuExcerpt",
+  name: "SoinExcerpt",
   props: {
-    actuId: {
+    soinId: {
       type: Number,
       required: true
     },

@@ -89,7 +89,7 @@ export default new Vuex.Store({
 
       delete ApiClient.defaults.headers["Authorization"];
 
-      router.push({ name: "home" });
+      router.push({ name: "Home" });
     },
     /**
      * Reconnect

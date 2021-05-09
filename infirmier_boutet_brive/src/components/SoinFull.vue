@@ -1,16 +1,16 @@
 <template>
-  <div v-if="actuData">
-    <h1>{{ actuData.title.rendered }}</h1>
-    <article class="actu">
+  <div v-if="soinData">
+    <h1>{{ soinData.title.rendered }}</h1>
+    <article class="soin">
       <section class="informations">
         <ul>
           <li>
-            Temps de préparation : {{ actuData.meta.preparation_time }} min.
+            Temps de préparation : {{ soinData.meta.preparation_time }} min.
           </li>
-          <li>Temps de cuisson : {{ actuData.meta.cooking_time }} min.</li>
+          <li>Temps de cuisson : {{ soinData.meta.cooking_time }} min.</li>
           <li>
-            Coût par personne (pour {{ actuData.meta.servings }} pers.) :
-            {{ actuData.meta.cost_per_person }} €
+            Coût par personne (pour {{ soinData.meta.servings }} pers.) :
+            {{ soinData.meta.cost_per_person }} €
           </li>
         </ul>
         <div
@@ -32,62 +32,56 @@
       </section>
       <section class="preparation">
         <h2>Préparation</h2>
-        <main v-html="actuData.content.rendered"></main>
+        <main v-html="soinData.content.rendered"></main>
       </section>
     </article>
-    <CommentList
-      v-if="commentOpen"
-      v-bind:postId="actuData.id"
-      v-bind:commentCount="actuData.comment_count"
-    />
   </div>
 </template>
 
 <script>
 import ApiClient from "@/services/ApiClient.js";
-import CommentList from "@/components/CommentList.vue";
 
 export default {
-  name: "ActuFull",
+  name: "SoinFull",
   components: {
-    CommentList
+
   },
   props: {
-    actuId: {
+    soinId: {
       type: Number,
       required: true
     }
   },
   data() {
     return {
-      actuData: null,
+      soinData: null,
       imageData: null,
       ingredientsData: []
     };
   },
   methods: {
-    getActuData() {
+    getSoinData() {
       // @todo Récupérer les informations en meta
-      let actuRequest = ApiClient.get("/wp/v2/actus/" + this.actuId);
+      let soinRequest = ApiClient.get("/wp/v2/soins/" + this.soinId);
 
-      actuRequest.then(response => {
-        this.actuData = response.data;
+      soinRequest.then(response => {
+        this.soinData = response.data;
 
-        if (this.actuData.featured_media !== 0) {
+        if (this.soinData.featured_media !== 0) {
           this.getImageData();
         }
 
-        if (this.actuData["actu-ingredients"].length > 0) {
+        if (this.soinData["soin-ingredients"].length > 0) {
           this.getIngredientsData();
         }
       });
-      actuRequest.catch(error => {
+      soinRequest.catch(error => {
         console.error(error);
       });
     },
     getImageData() {
       let imageRequest = ApiClient.get(
-        "/wp/v2/media/" + this.actuData.featured_media
+        "/wp/v2/media/" + this.soinData.featured_media
       );
 
       imageRequest.then(response => {
@@ -95,12 +89,12 @@ export default {
       });
     },
     getIngredientsData() {
-      let ingredientsRequest = ApiClient.get("/wp/v2/actu-ingredients", {
+      let ingredientsRequest = ApiClient.get("/wp/v2/soin-ingredients", {
         params: {
           /**
            * Je récupère la liste des ingrédients uniquement liés à ma recette
            */
-          include: this.actuData["actu-ingredients"]
+          include: this.soinData["soin-ingredients"]
         }
       });
 
@@ -122,12 +116,9 @@ export default {
 
       return cssBackgroundImage;
     },
-    commentOpen() {
-      return this.actuData.comment_status === "open";
-    }
   },
   mounted() {
-    this.getActuData();
+    this.getSoinData();
   }
 };
 </script>

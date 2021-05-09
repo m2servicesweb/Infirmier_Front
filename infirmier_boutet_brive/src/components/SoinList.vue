@@ -1,88 +1,46 @@
 <template>
   <div>
-    <div class="filter-list">
-      <div class="filter-list__title">Filtrer</div>
-      <div class="filter-list__content">
-        <div class="filter">
-          <label class="filter__label">Type</label>
-          <select
-            class="filter__control select"
-            v-model="selectedType"
-            v-on:change="getActuItems()"
-          >
-            <option
-              v-for="type in typeItems"
-              v-bind:key="type.id"
-              v-bind:value="type.id"
-              >{{ type.name }} ({{ type.count }})</option
-            >
-          </select>
-        </div>
-        <div class="filter">
-          <label class="filter__label">Ingrédients</label>
-          <select
-            multiple
-            class="filter__control select"
-            v-model="selectedIngredients"
-            v-on:change="getActuItems()"
-          >
-            <option
-              v-for="ingredient in ingredientItems"
-              v-bind:key="ingredient.id"
-              v-bind:value="ingredient.id"
-              >{{ ingredient.name }} ({{ ingredient.count }})</option
-            >
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="actu-list">
+    <div class="soin-list">
       <h1>Recettes</h1>
       <!-- Utilisation "dynamique" des props -->
-      <ActuExcerpt
-        v-for="actu in actuItems"
-        v-bind:key="actu.id"
-        v-bind:actuId="actu.id"
-        v-bind:title="actu.title.rendered"
-        v-bind:excerpt="actu.excerpt.rendered"
-        v-bind:imageId="actu.featured_media"
+      <SoinExcerpt
+        v-for="soin in soinItems"
+        v-bind:key="soin.id"
+        v-bind:soinId="soin.id"
+        v-bind:title="soin.title.rendered"
+        v-bind:excerpt="soin.excerpt.rendered"
+        v-bind:imageId="soin.featured_media"
       />
       <!-- Utilisation statique des props -->
       <!--
-      <ActuExcerpt
+      <SoinExcerpt
         title="Tarte aux fraises"
         excerpt="Une excellente recette de tarte aux fraises"
         image="https://source.unsplash.com/collection/157&random=1" />
-      <ActuExcerpt
+      <SoinExcerpt
         title="Tarte aux abricots"
         excerpt="Une excellente recette de tarte aux abricots"
         image="https://source.unsplash.com/collection/157&random=2" />
-      <ActuExcerpt
+      <SoinExcerpt
         title="Tarte à la rhubarbe"
         excerpt="Une excellente recette de tarte à la rhubarbe"
         image="https://source.unsplash.com/collection/157&random=3" />
       -->
     </div>
-    <PaginationNavigation
-      routeName="home-paginated"
-      v-bind:pageNumber="pageNumber"
-      v-bind:totalPages="totalPages"
-    />
   </div>
 </template>
 
 <script>
 import ApiClient from "@/services/ApiClient.js";
-import ActuExcerpt from "./ActuExcerpt.vue";
-import PaginationNavigation from "./PaginationNavigation.vue";
+import SoinExcerpt from "./SoinExcerpt.vue";
 
 export default {
-  name: "ActuList",
+  name: "SoinList",
   data() {
     return {
       typeItems: [],
       ingredientItems: [],
-      actuItems: [],
+      soinItems: [],
       totalPages: 0,
       selectedType: null,
       selectedIngredients: []
@@ -104,17 +62,17 @@ export default {
     handleIngredientListResponseError(error) {
       console.error(error);
     },
-    handleActuListResponse(response) {
-      this.actuItems = response.data;
+    handleSoinListResponse(response) {
+      this.soinItems = response.data;
     },
-    handleActuListResponseError(error) {
+    handleSoinListResponseError(error) {
       console.error(error);
     },
     getTypeItems() {
       /**
        * @type {Promise}
        */
-      let typeListRequest = ApiClient.get("/wp/v2/actu-types");
+      let typeListRequest = ApiClient.get("/wp/v2/soin-types");
 
       /**
        * J'associe le traitement à effectuer en cas de succès (promesse résolue)
@@ -129,37 +87,37 @@ export default {
       typeListRequest.catch(this.handleTypeListResponseError);
     },
     getIngredientItems() {
-      let ingredientListRequest = ApiClient.get("/wp/v2/actu-ingredients");
+      let ingredientListRequest = ApiClient.get("/wp/v2/soin-ingredients");
       ingredientListRequest.then(this.handleIngredientListResponse);
       ingredientListRequest.catch(this.handleIngredientListResponseError);
     },
-    getActuItems() {
-      let actuListRequestParams = {
+    getSoinItems() {
+      let soinListRequestParams = {
         page: this.pageNumber
       };
 
       if (this.selectedType) {
-        actuListRequestParams["actu-types"] = this.selectedType;
+        soinListRequestParams["soin-types"] = this.selectedType;
       }
 
       if (this.selectedIngredients.length) {
-        actuListRequestParams[
-          "actu-ingredients"
+        soinListRequestParams[
+          "soin-ingredients"
         ] = this.selectedIngredients;
       }
 
-      let actuListRequest = ApiClient.get("/wp/v2/actus", {
-        params: actuListRequestParams
+      let soinListRequest = ApiClient.get("/wp/v2/soins", {
+        params: soinListRequestParams
       });
-      actuListRequest.then(this.setTotalPages);
-      actuListRequest.then(this.handleActuListResponse);
-      actuListRequest.catch(this.handleActuListResponseError);
+      soinListRequest.then(this.setTotalPages);
+      soinListRequest.then(this.handleSoinListResponse);
+      soinListRequest.catch(this.handleSoinListResponseError);
 
       /*
       // Sans variable stockant la promesse
       ApiClient
         .get(
-          "/wp/v2/actus",
+          "/wp/v2/soins",
           {
             params: {
               page: this.pageNumber,
@@ -167,8 +125,8 @@ export default {
           }
         )
         .then(this.setTotalPages)
-        .then(this.handleActuListResponse)
-        .catch(this.handleActuListResponseError);
+        .then(this.handleSoinListResponse)
+        .catch(this.handleSoinListResponseError);
       */
     },
     setTotalPages(response) {
@@ -200,7 +158,7 @@ export default {
      * @link https://fr.vuejs.org/v2/guide/computed.html#Observateurs
      */
     pageNumber() {
-      this.getActuItems();
+      this.getSoinItems();
     }
   },
   /**
@@ -211,11 +169,10 @@ export default {
 
     this.getIngredientItems();
 
-    this.getActuItems();
+    this.getSoinItems();
   },
   components: {
-    ActuExcerpt,
-    PaginationNavigation
+    SoinExcerpt,
   }
 };
 </script>
