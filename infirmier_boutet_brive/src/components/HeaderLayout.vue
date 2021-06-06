@@ -23,12 +23,9 @@
             </RouterLink>
             <RouterLink v-bind:to="{ name: 'Domicile' }">
               <a href="#" class="block lg:inline-block text-md font-bold  text-white  sm:hover:border-indigo-400  hover:text-orange-500 mx-2  p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg uppercase">à domicile</a>
-<<<<<<< HEAD
-=======
               </RouterLink>
               <RouterLink v-bind:to="{ name: 'Contact' }">
->>>>>>> lien Canva retabli
-              <a href="#" class="block lg:inline-block text-md font-bold  text-white  sm:hover:border-indigo-400  hover:text-orange-500 mx-2  p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg">CONTACT</a>
+              <a href="#" class="block lg:inline-block text-md font-bold  text-white  sm:hover:border-indigo-400  hover:text-orange-500 mx-2  p-1 hover:bg-gray-300 sm:hover:bg-transparent rounded-lg">CONTACT</a></RouterLink>
           </div>
         </div>
       </nav>

@@ -1,15 +1,8 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <div class="soin-list">
-      <h1>Recettes</h1>
-      <!-- Utilisation "dynamique" des props -->
-      <SoinExcerpt
-=======
+<div>
   <div class="flex flex-wrap overflow-hidden">
     <div class="container mx-auto">
     <SoinExcerpt
->>>>>>> lien Canva retabli
         v-for="soin in soinItems"
         v-bind:key="soin.id"
         v-bind:soinId="soin.id"
@@ -18,29 +11,9 @@
         v-bind:content="soin.content.rendered"
         v-bind:imageId="soin.featured_media"
       />
-<<<<<<< HEAD
-      <!-- Utilisation statique des props -->
-      <!--
-      <SoinExcerpt
-        title="Tarte aux fraises"
-        excerpt="Une excellente recette de tarte aux fraises"
-        image="https://source.unsplash.com/collection/157&random=1" />
-      <SoinExcerpt
-        title="Tarte aux abricots"
-        excerpt="Une excellente recette de tarte aux abricots"
-        image="https://source.unsplash.com/collection/157&random=2" />
-      <SoinExcerpt
-        title="Tarte à la rhubarbe"
-        excerpt="Une excellente recette de tarte à la rhubarbe"
-        image="https://source.unsplash.com/collection/157&random=3" />
-      -->
     </div>
   </div>
-=======
-      </div>
-      </div>
-      
->>>>>>> lien Canva retabli
+  </div>
 </template>
 
 <script>
