@@ -1,16 +1,24 @@
 <template>
+<<<<<<< HEAD
   <div>
     <div class="soin-list">
       <h1>Recettes</h1>
       <!-- Utilisation "dynamique" des props -->
       <SoinExcerpt
+=======
+  <div class="flex flex-wrap overflow-hidden">
+    <div class="container mx-auto">
+    <SoinExcerpt
+>>>>>>> lien Canva retabli
         v-for="soin in soinItems"
         v-bind:key="soin.id"
         v-bind:soinId="soin.id"
         v-bind:title="soin.title.rendered"
         v-bind:excerpt="soin.excerpt.rendered"
+        v-bind:content="soin.content.rendered"
         v-bind:imageId="soin.featured_media"
       />
+<<<<<<< HEAD
       <!-- Utilisation statique des props -->
       <!--
       <SoinExcerpt
@@ -28,6 +36,11 @@
       -->
     </div>
   </div>
+=======
+      </div>
+      </div>
+      
+>>>>>>> lien Canva retabli
 </template>
 
 <script>

@@ -5,12 +5,16 @@
         </div>
         <div class="mt-4 md:mt-0 flex flex-col md:flex-row">
             <nav class="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-100 md:pr-5">
+              <RouterLink v-bind:to="{ name: 'Politique_de_confidentialité' }">
                 <a aria-current="page" href="#" class="hover:text-orange-500 dark:hover:text-white transition-colors duration-200">
                     Politique de confidentialité
                 </a>
+                </RouterLink>
+                <RouterLink v-bind:to="{ name: 'Mentions_Légales' }">
                 <a aria-current="page" href="#" class="hover:text-orange-500 dark:hover:text-white transition-colors duration-200">
                     Mentions légales
                 </a>
+                </RouterLink>
             </nav>
             <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full">
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <article class="article">
+  <article class="mb-8">
     <RouterLink
       v-bind:to="{
         name: 'single-soin',
@@ -15,9 +15,8 @@
           backgroundImage: cssBackgroundImage
         }"
       ></div>
-      <div class="text-content">
-        <h2>{{ title }}</h2>
-        <div v-html="excerpt"></div>
+      <div class="">
+        <div v-html="content"></div>
       </div>
     </RouterLink>
   </article>
@@ -38,6 +37,10 @@ export default {
       required: true
     },
     excerpt: {
+      type: String,
+      required: true
+    },
+    content: {
       type: String,
       required: true
     },

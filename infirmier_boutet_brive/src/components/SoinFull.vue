@@ -1,40 +1,14 @@
 <template>
   <div v-if="soinData">
-    <h1>{{ soinData.title.rendered }}</h1>
-    <article class="soin">
-      <section class="informations">
-        <ul>
-          <li>
-            Temps de préparation : {{ soinData.meta.preparation_time }} min.
-          </li>
-          <li>Temps de cuisson : {{ soinData.meta.cooking_time }} min.</li>
-          <li>
-            Coût par personne (pour {{ soinData.meta.servings }} pers.) :
-            {{ soinData.meta.cost_per_person }} €
-          </li>
-        </ul>
-        <div
-          class="media-image"
-          v-if="imageData"
-          v-bind:style="{
-            backgroundImage: cssBackgroundImage
-          }"
-        ></div>
-      </section>
+    
+    <article class="">
 
       <section class="ingredients">
-        <h2>Ingrédients</h2>
-        <ul>
-          <li v-for="ingredient in ingredientsData" v-bind:key="ingredient.id">
-            {{ ingredient.name }}
-          </li>
-        </ul>
-      </section>
-      <section class="preparation">
-        <h2>Préparation</h2>
+      
         <main v-html="soinData.content.rendered"></main>
       </section>
     </article>
+    
   </div>
 </template>
 
